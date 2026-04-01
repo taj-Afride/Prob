@@ -16,14 +16,6 @@ class Solution {
                 j++;
             }
         }
-        int k=0;
-        for(int v:nums){
-            if(v!=val){
-                k++;
-            }else{
-                break;
-            }
-        }
-        return k;
+        return j;
     }
 }
