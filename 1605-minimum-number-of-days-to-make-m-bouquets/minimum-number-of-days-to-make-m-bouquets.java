@@ -23,7 +23,7 @@ class Solution {
             }
         }
         int ans=0;
-        if(m*k>bloomDay.length) return -1;
+        if((long)m*k>bloomDay.length) return -1;
         while(min<=max){
             int mid=min+(max-min)/2;
             if(possible(bloomDay,mid,m,k)){
@@ -34,7 +34,6 @@ class Solution {
                 min=mid+1;
             }
         }
-        if(ans>0){return ans;}
-        return -1;
+        return ans;
     }
 }
