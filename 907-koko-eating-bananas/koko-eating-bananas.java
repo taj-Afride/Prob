@@ -1,28 +1,26 @@
 class Solution {
-    public long total(int piles[],int n){
-        long tot=0;
-        for(int i=0;i<piles.length;i++){
-            tot+=(piles[i] + n - 1L) / n;
+    public long canEat(int arr[],int m){
+        long tH=0;
+        for(int i=0;i<arr.length;i++){
+            tH+=((m+arr[i]-1)/m);
         }
-        return tot;
+        return tH;
     }
     public int minEatingSpeed(int[] piles, int h) {
-        int max=-1;
+        int low=1;
+        int high=0;
         int ans=0;
         for(int i=0;i<piles.length;i++){
-            max=Math.max(piles[i],max);
+            high=Math.max(high,piles[i]);
         }
-        int l=1;
-        int x=max;
-        while(l<=x){
-            int mid=l+(x-l)/2;
-            long totalhours=total(piles,mid);
-            if(totalhours<=h){
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(canEat(piles,mid)<=h){
                 ans=mid;
-                x=mid-1;
+                high=mid-1;
             }
             else{
-                l=mid+1;
+                low=mid+1;
             }
         }
         return ans;
