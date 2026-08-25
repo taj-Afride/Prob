@@ -1,30 +1,27 @@
 class Solution {
-    public boolean possible(int arr[],int days,int k){
-        int cnt=0;
-        for(int i=0;i<arr.length;i++){
-           cnt+=(arr[i]+days-1)/days;
+    public boolean possible(int nums[],int t,int d){
+        int result=0;
+        for(int i=0;i<nums.length;i++){
+            result+=(nums[i]+d-1)/d;
         }
-        if(cnt<=k){
-            return true;
-        }
-        return false;
+        return result<=t;
     }
     public int smallestDivisor(int[] nums, int threshold) {
-         int max=Integer.MIN_VALUE,min=1;
+        int low=1;
+        int high=-1;
         for(int i=0;i<nums.length;i++){
-            max=Math.max(nums[i],max);
+            high=Math.max(nums[i],high);
         }
-        int ans=0;
-        while(min<=max){
-            int mid=min+(max-min)/2;
-            if(possible(nums,mid,threshold)){
-                ans=mid;
-                max=mid-1;
-            }
-            else{
-                min=mid+1;
+        int divisor=0;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(possible(nums,threshold,mid)){
+                divisor=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
             }
         }
-        return ans;
+        return divisor;
     }
 }
